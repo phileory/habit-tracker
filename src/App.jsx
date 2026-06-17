@@ -25,7 +25,6 @@ export default function App() {
   const currentMonthPrefix = todayDate.substring(0, 7) 
   const daysInMonth = getDaysInCurrentMonth()
 
-  // MENGGUNAKAN V3 AGAR MEMULAI DATABASE BARU YANG BERSIH
   const [habits, setHabits] = useState(() => {
     const savedHabits = localStorage.getItem('habitTrackerDataV3')
     if (savedHabits) return JSON.parse(savedHabits)
@@ -64,7 +63,7 @@ export default function App() {
     const percentage = (completed / daysInMonth) * 100;
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <span style={{ fontSize: '13px', fontFamily: 'Arial, sans-serif', marginBottom: '6px', fontWeight: '500' }}>{label}</span>
+        <span style={{ fontSize: '13px', fontFamily: 'Arial, sans-serif', marginBottom: '6px', fontWeight: '500', color: '#000' }}>{label}</span>
         <div style={{
           width: '64px', height: '64px', borderRadius: '50%',
           background: `conic-gradient(#4d4d4d ${percentage}%, #d9d9d9 ${percentage}%)`,
@@ -84,17 +83,17 @@ export default function App() {
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-        <span style={{ fontSize: '16px', fontFamily: 'Arial, sans-serif', marginBottom: '10px', fontWeight: '500' }}>Workout</span>
+        <span style={{ fontSize: '16px', fontFamily: 'Arial, sans-serif', marginBottom: '10px', fontWeight: '500', color: '#000' }}>Workout</span>
         <div style={{ display: 'flex', height: '220px', alignItems: 'stretch' }}>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginRight: '10px', fontSize: '12px', color: '#000', paddingBottom: '10px' }}>
             <span>30</span><span>25</span><span>20</span><span>15</span><span>10</span><span>5</span><span>0</span>
           </div>
           <div style={{ width: '55px', height: '100%', display: 'flex', flexDirection: 'column', borderRadius: '6px', overflow: 'hidden', marginBottom: '10px' }}>
             <div style={{ height: `${remainingPercent}%`, backgroundColor: '#d9d9d9', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              {remaining > 0 && <span style={{ fontSize: '12px', fontWeight: 'bold' }}>{remaining}</span>}
+              {remaining > 0 && <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#000' }}>{remaining}</span>}
             </div>
-            <div style={{ height: `${completedPercent}%`, backgroundColor: '#4d4d4d', display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#fff' }}>
-              {completed > 0 && <span style={{ fontSize: '12px', fontWeight: 'bold' }}>{completed}</span>}
+            <div style={{ height: `${completedPercent}%`, backgroundColor: '#4d4d4d', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              {completed > 0 && <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#fff' }}>{completed}</span>}
             </div>
           </div>
         </div>
@@ -106,11 +105,16 @@ export default function App() {
     <>
       <style>{`
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { margin: 0; background-color: #ffffff; color: #000; font-family: 'Helvetica Neue', Arial, sans-serif; }
-        .header-text { font-family: 'Georgia', 'Times New Roman', serif; margin: 0; line-height: 0.85; letter-spacing: -1.5px; }
-        .grid-checkbox { appearance: none; -webkit-appearance: none; width: 24px; height: 24px; border: 2px solid #000; background-color: transparent; cursor: pointer; position: relative; flex-shrink: 0; margin-right: 12px; }
-        .grid-checkbox:checked::after { content: '✔'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 18px; color: #000; }
-        .grid-label { display: flex; alignItems: center; cursor: pointer; font-size: 16px; font-weight: 400; }
+        body { margin: 0; background-color: #ffffff !important; color: #000 !important; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        
+        /* Mengunci warna teks judul agar selalu hitam */
+        .header-text { font-family: 'Georgia', 'Times New Roman', serif; margin: 0; line-height: 0.85; letter-spacing: -1.5px; color: #000 !important; }
+        
+        .grid-checkbox { appearance: none; -webkit-appearance: none; width: 24px; height: 24px; border: 2px solid #000 !important; background-color: transparent !important; cursor: pointer; position: relative; flex-shrink: 0; margin-right: 12px; }
+        .grid-checkbox:checked::after { content: '✔'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 18px; color: #000 !important; }
+        
+        /* Mengunci warna teks checklist agar selalu hitam */
+        .grid-label { display: flex; alignItems: center; cursor: pointer; font-size: 16px; font-weight: 400; color: #000 !important; }
       `}</style>
 
       <div style={{ display: 'flex', justifyContent: 'center', minHeight: '100vh', padding: '40px 20px', backgroundColor: '#fff' }}>
@@ -142,7 +146,7 @@ export default function App() {
           </div>
 
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '3px', fontSize: '13px', fontWeight: '500', marginBottom: '8px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '3px', fontSize: '13px', fontWeight: '500', marginBottom: '8px', color: '#000' }}>
               <span>DAILY PROGRESS</span>
               <span>{progressPercentage} %</span>
             </div>
